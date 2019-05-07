@@ -76,7 +76,9 @@
       class="main-container__bg"
       [ngClass]="{ 'main-container__bg-dark': darkModeActive }"
     ></div>
-    <router-outlet></router-outlet>
+    <router-outlet>
+      <app-player></app-player>
+    </router-outlet>
   </main>
 
   <!-- Footer -->
