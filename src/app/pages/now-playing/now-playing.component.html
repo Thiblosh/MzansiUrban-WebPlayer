@@ -1,0 +1,15 @@
+<div class="now-playing" *ngIf="trackLoaded">
+  <div class="cover-art">
+    <img src="{{ currentTrack.cover_art }}" *ngIf="currentTrack?.cover_art" />
+  </div>
+
+  <div class="text">
+    <div class="title" *ngIf="currentTrack?.title">
+      {{ currentTrack.title }}
+    </div>
+    <div class="artist" *ngIf="currentTrack?.artist">
+      by {{ currentTrack.artist }}
+    </div>
+  </div>
+</div>
+<div class="circle-loader now-playing-loading gray" *ngIf="!trackLoaded"></div>

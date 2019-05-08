@@ -3,14 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  now_playing: {
+    provider: 1,
+    data_url: 'http://np.tritondigital.com/public/nowplaying?mountName=WSPKFMAAC&numberToFetch={{limit}}&eventType=track',
+    generic_cover: './assets/img/generic-cover-art.jpg',
+    format_tracks: true,
+    default_title: 'Unknown Title',
+    default_artist: 'Unknown Artist'
+  },
+  streaming: {
+    url: 'http://stream.urbanza.co.za/mzansiurban_high',
+    format: ['aac', 'mp3'],
+    html5: true,
+    autoplay: true
+  }
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

@@ -1,0 +1,22 @@
+<div class="playlist">
+  <div class="circle-loader playlist-loader gray" *ngIf="tracksLoading"></div>
+  <ul *ngIf="tracks.length && !tracksLoading">
+    <li *ngFor="let track of tracks">
+      <div class="cover-art">
+        <img src="{{ track.cover_art }}" *ngIf="track?.cover_art" />
+      </div>
+      <div class="data">
+        <div class="title">
+          {{ track?.title }}
+        </div>
+        <div class="artist">by {{ track?.artist }}</div>
+        <div class="played-at">
+          played at {{ track?.played_at | date: "h:mma" }}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="msg warning" *ngIf="!tracks.length && !tracksLoading">
+    You haven't listened long enough!
+  </div>
+</div>
