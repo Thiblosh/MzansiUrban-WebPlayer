@@ -52,7 +52,7 @@ export class NowPlayingService {
 
   formatItunes(track: Track) {
     let searchUrl = 'https://itunes.apple.com/search?term=';
-
+    console.log('testing serach ');
     searchUrl += encodeURI(track.title + ' by ' + track.artist);
 
     searchUrl += '&limit=1&entity=song';
@@ -75,7 +75,7 @@ export class NowPlayingService {
 
   fetch(limit): Observable<Track[]> {
     const dataUrl = environment.now_playing.data_url.replace('{{limit}}', limit);
-
+    console.log('Testing the fetch method');
     return this.http.get(dataUrl, {
       responseType: 'text'
     }).pipe(

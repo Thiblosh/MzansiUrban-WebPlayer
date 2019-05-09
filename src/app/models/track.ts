@@ -4,10 +4,14 @@ export class Track {
   title: string;
   artist: string;
   album: string;
+  // tslint:disable-next-line: variable-name
   cover_art: string;
+  // tslint:disable-next-line: variable-name
   purchase_link: string;
   duration: any;
+  // tslint:disable-next-line: variable-name
   played_at: any;
+  // tslint:disable-next-line: variable-name
   ends_at: any;
 
   constructor(data: any) {
@@ -26,6 +30,7 @@ export class Track {
     if (this.played_at && this.duration) {
       this.ends_at = ((this.played_at / 1000) + (this.duration / 1000)) * 1000;
     } else {
+      // tslint:disable-next-line: new-parens
       this.ends_at = (new Date).getTime() + 30000;
     }
   }
@@ -37,6 +42,7 @@ export class Track {
 
   timeUntilEnds() {
     const date = new Date();
+    // tslint:disable-next-line: variable-name
     const ends_in = this.ends_at - date.getTime();
     return (ends_in < 0) ? 10000 : ends_in;
   }

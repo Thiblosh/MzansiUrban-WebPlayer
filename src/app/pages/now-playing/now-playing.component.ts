@@ -5,9 +5,6 @@ import { NowPlayingService } from 'src/app/services/streaming/now-playing.servic
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ShowLineupService } from 'src/app/services/streaming/show-lineup.service';
 
-declare function radioTitle(): any;
-declare var $: any;
-
 @Component({
   selector: 'app-now-playing',
   templateUrl: './now-playing.component.html',
@@ -98,14 +95,9 @@ export class NowPlayingComponent implements OnInit {
   }
 
   getShowData() {
-    // this.showData = this.showDataService.fetch();
     this.showDataService.fetch().subscribe(data => {
       this.showData = data;
     });
-
-    console.log('--------------------------');
-    console.log(this.showData);
-    console.log('--------------------------');
   }
 
   ngOnInit() {
@@ -117,8 +109,8 @@ export class NowPlayingComponent implements OnInit {
     this.streaming.played.subscribe(() => {
       // Set current track
       this.getCurrentTrack();
+      // Set shows
       this.getShowData();
-      radioTitle();
     });
   }
 

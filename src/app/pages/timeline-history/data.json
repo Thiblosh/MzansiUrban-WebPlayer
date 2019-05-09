@@ -1,0 +1,83 @@
+{
+  "Tracks": [{
+      "title": "Cavaliers",
+      "des": "Cleveland",
+      "imgpath": "images/carousel-img/NBA/Cavaliers.jpg"
+    },
+    {
+      "title": "Bulls",
+      "des": "Chicago",
+      "imgpath": "images/carousel-img/NBA/Bulls.jpg"
+    },
+    {
+      "title": "Warriors",
+      "des": "Golden State",
+      "imgpath": "images/carousel-img/NBA/Warriors.jpg"
+    },
+    {
+      "title": "Heat",
+      "des": "Miami",
+      "imgpath": "images/carousel-img/NBA/Heat.jpg"
+    },
+    {
+      "title": "Thunder",
+      "des": "Oklahoma des",
+      "imgpath": "images/carousel-img/NBA/Thunder.jpg"
+    },
+    {
+      "title": "Spurs",
+      "des": "San Antonio",
+      "imgpath": "images/carousel-img/NBA/Spurs.jpg"
+    },
+    {
+      "title": "Rockets",
+      "des": "Houston",
+      "imgpath": "images/carousel-img/NBA/Rockets.jpg"
+    },
+    {
+      "title": "Lakers",
+      "des": "Los Angeles",
+      "imgpath": "images/carousel-img/NBA/Lakers.jpg"
+    },
+    {
+      "title": "Bucks",
+      "des": "Milwaukee",
+      "imgpath": "images/carousel-img/NBA/Bucks.jpg"
+    },
+    {
+      "title": "Celtics",
+      "des": "Boston",
+      "imgpath": "images/carousel-img/NBA/Celtics.jpg"
+    },
+    {
+      "title": "Hornets",
+      "des": "Charlotte",
+      "imgpath": "images/carousel-img/NBA/Hornets.jpg"
+    },
+    {
+      "title": "Pistons",
+      "des": "Detroit",
+      "imgpath": "images/carousel-img/NBA/Pistons.jpg"
+    },
+    {
+      "title": "Mavericks",
+      "des": "Dallas",
+      "imgpath": "images/carousel-img/NBA/Mavericks.jpg"
+    },
+    {
+      "title": "Hawks",
+      "des": "Atlanta",
+      "imgpath": "images/carousel-img/NBA/Hawks.jpg"
+    },
+    {
+      "title": "Grizzlies",
+      "des": "Memphis",
+      "imgpath": "images/carousel-img/NBA/Grizzlies.jpg"
+    },
+    {
+      "title": "Raptors",
+      "des": "Toronto",
+      "imgpath": "images/carousel-img/NBA/Raptors.jpg"
+    }
+  ]
+}

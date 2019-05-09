@@ -36,7 +36,8 @@
                 <div class="timeline-card--figure--img">
                   <img
                     id="album-cover-img"
-                    src="../../../images/mur-noartist-logo.png"
+                    src="{{ currentTrack.cover_art }}"
+                    *ngIf="currentTrack?.cover_art"
                     alt=""
                   />
                 </div>
@@ -65,6 +66,7 @@
                   class="timeline-card--subtitle"
                   id="artist-title-info"
                   class="jp-artist"
+                  *ngIf="currentTrack?.artist"
                 >
                   {{ currentTrack.artist }}
                 </h5>
@@ -72,6 +74,7 @@
                   class="timeline-card--title"
                   id="song-title-info"
                   class="jp-title"
+                  *ngIf="currentTrack?.title"
                 >
                   {{ currentTrack.title }}
                 </h4>
@@ -162,14 +165,16 @@
                 <figure class="timeline-show--current--figure">
                   <img
                     alt=""
-                    height="50"
+                    height="70"
                     src="https://api.adorable.io/avatars/116/abott@adorable.io.png"
-                    width="50"
+                    width="70"
                   />
                 </figure>
-                <p class="title"></p>
+                <p class="title">
+                  {{ showData.currentShow.showName }}
+                </p>
                 <p class="text">
-                  <!-- <strong> {{ showData.showName }}</strong> -->
+                  {{ showData.currentShow.showPresenter }}
                 </p>
 
                 <h5
@@ -178,8 +183,9 @@
                   class="jp-artist"
                 ></h5>
 
-                <h5 class="timeline-show--current--title"></h5>
-                <strong> Mang Mang</strong>
+                <h6 class="timeline-show--current--title">
+                  {{ showData.currentShow.showDescription }}
+                </h6>
               </div>
 
               <div class="timeline-show--right">
@@ -188,10 +194,10 @@
                 </div>
                 <div class="timeline-show--next">
                   <h6 class="timeline-show--next--title">
-                    <strong> The Morning Blizard</strong>
+                    <strong> {{ showData.nextShow.showName }}</strong>
                   </h6>
                   <span class="timeline-show--next--time">
-                    <strong>Mang Mang</strong>
+                    <strong> {{ showData.nextShow.showPresenter }}</strong>
                   </span>
                 </div>
               </div>

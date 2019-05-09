@@ -16,7 +16,6 @@ export class TimelineHistoryComponent implements OnInit {
   constructor(private npService: NowPlayingService) { }
 
   setTracks(): void {
-    // Clone npService's recentlyPlayed array and then reverse newly created one
     this.tracks = Object.assign([], this.npService.recentlyPlayed).reverse();
   }
 
