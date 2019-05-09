@@ -119,58 +119,27 @@
 
       <span class="mode-toggle__text"> Dark</span>
     </div>
-
-    <!-- Notification -->
-    <div class="notifications" *ngIf="notifications.stack">
-      <div
-        *ngFor="let notification of notifications.stack"
-        class="msg {{ notification.type }}"
-      >
-        {{ notification.message }}
-      </div>
-    </div>
   </header>
 
   <!-- Main Content -->
 
+  <!-- Notification -->
+  <div class="notifications" *ngIf="notifications.stack">
+    <div
+      *ngFor="let notification of notifications.stack"
+      class="msg {{ notification.type }}"
+    >
+      {{ notification.message }}
+    </div>
+  </div>
+
   <!--<router-outlet></router-outlet>-->
-  <main class="main__container">
+  <main class="main__container" [@routerTransition]="getState(o)">
     <div
       class="main-container__bg"
       [ngClass]="{ 'main-container__bg-dark': darkModeActive }"
     ></div>
-    <router-outlet>
-      <div class="inner">
-        <ul class="footer-nav">
-          <li>
-            <a [routerLink]="['/player']">
-              <i class="fas fa-volume-up"></i> Player
-            </a>
-          </li>
-          <li class="play-btn" (click)="toggleStreamingPlayer($event)">
-            <a [routerLink]="['/player']">
-              <i
-                class="fas fa-play"
-                *ngIf="!streaming.isPlaying() && !streaming.isLoading()"
-              ></i>
-              <i
-                class="fas fa-pause"
-                *ngIf="streaming.isPlaying() && !streaming.isLoading()"
-              ></i>
-              <i
-                class="fas fa-spinner fa-pulse"
-                *ngIf="streaming.isLoading()"
-              ></i>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/timeline']">
-              <i class="fas fa-clock"></i> Timeline
-            </a>
-          </li>
-        </ul>
-      </div>
-    </router-outlet>
+    <router-outlet #o="outlet"> </router-outlet>
   </main>
 
   <!-- Footer -->

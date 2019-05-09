@@ -14,11 +14,11 @@ import { trigger, animate, style, group, animateChild, query, stagger, transitio
         group([
           query(':enter', [
             style({ transform: 'translateY(100%)' }),
-            animate('0.3s ease-in-out', style({ transform: 'translateY(0%)' }))
+            animate('1s ease-in-out', style({ transform: 'translateY(0%)' }))
           ], { optional: true }),
           query(':leave', [
             style({ transform: 'translateY(0%)' }),
-            animate('0.3s ease-in-out', style({ transform: 'translateY(100%)' }))
+            animate('1s ease-in-out', style({ transform: 'translateY(100%)' }))
           ], { optional: true }),
         ])
       ])
@@ -32,10 +32,9 @@ export class AppComponent implements OnInit {
   title = 'MzansiUrbanLivePlayer';
   showMenu = false;
   darkModeActive = false;
-  streamingPlayer;
+  // streamingPlayer;
 
   constructor(public ui: UiService, public streaming: StreamingService, public notifications: NotificationService) {
-
   }
 
   ngOnInit() {
@@ -56,13 +55,13 @@ export class AppComponent implements OnInit {
     return outlet.activatedRouteData.state;
   }
 
-  toggleStreamingPlayer(): void {
-    if (this.streaming.player.playing()) {
-      this.streaming.pause();
-    } else {
-      this.streaming.play();
-    }
-  }
+  // toggleStreamingPlayer(): void {
+  //   if (this.streaming.player.playing()) {
+  //     this.streaming.pause();
+  //   } else {
+  //     this.streaming.play();
+  //   }
+  // }
 
   removeNotification(id: string): void {
     this.notifications.remove(id);

@@ -380,9 +380,9 @@ a {
 
 /* Playlist */
 .playlist {
-  background: #fff;
-  padding: 15px 15px 70px 15px;
-  min-height: 82vh;
+  // background: #fff;
+  // padding: 15px 15px 70px 15px;
+  max-height: 250px;
 
   .playlist-loader {
     text-align: center;
@@ -390,6 +390,7 @@ a {
 
   ul {
     list-style: none;
+    display: inline;
 
     li {
       padding: 10px 0;
@@ -402,7 +403,7 @@ a {
 
       .cover-art {
         flex: 1 1;
-        max-width: 70px;
+        max-width: 100px;
 
         img {
           max-width: 100%;

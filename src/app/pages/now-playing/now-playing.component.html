@@ -1,4 +1,4 @@
-<div class="now-playing" *ngIf="trackLoaded">
+<!-- <div class="now-playing" *ngIf="trackLoaded">
   <div class="cover-art">
     <img src="{{ currentTrack.cover_art }}" *ngIf="currentTrack?.cover_art" />
   </div>
@@ -12,4 +12,201 @@
     </div>
   </div>
 </div>
-<div class="circle-loader now-playing-loading gray" *ngIf="!trackLoaded"></div>
+<div class="circle-loader now-playing-loading gray" *ngIf="!trackLoaded"></div> -->
+
+<!-- Song -->
+<div class="song">
+  <body class="template-listen-live">
+    <div class="spinner-container">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <main class="main" role="main">
+      <section>
+        <div class="timeline">
+          <div class="timeline-current">
+            <article class="timeline-card type-song size-lg">
+              <div class="timeline-card--corner"></div>
+              <div class="timeline-card--icon">
+                <span class="icon-"></span>
+              </div>
+              <figure class="timeline-card--figure">
+                <div class="timeline-card--figure--img">
+                  <img
+                    id="album-cover-img"
+                    src="../../../images/mur-noartist-logo.png"
+                    alt=""
+                  />
+                </div>
+                <ul class="timeline-card--actions">
+                  <li>
+                    <button
+                      href="#"
+                      class="timeline-card--action-like is-active"
+                      (click)="getShowData()"
+                    >
+                      <span class="icon-like"></span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      href="#"
+                      class="timeline-card--action-dislike is-active"
+                    >
+                      <span class="icon-dislike"></span>
+                    </button>
+                  </li>
+                </ul>
+              </figure>
+              <div class="timeline-card--text">
+                <h5
+                  class="timeline-card--subtitle"
+                  id="artist-title-info"
+                  class="jp-artist"
+                >
+                  {{ currentTrack.artist }}
+                </h5>
+                <h4
+                  class="timeline-card--title"
+                  id="song-title-info"
+                  class="jp-title"
+                >
+                  {{ currentTrack.title }}
+                </h4>
+                <!-- <p><strong>Album</strong> {{ currentTrack.album }}</p> -->
+                <div class="timeline-card--equalizer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="equalizer--svg"
+                    viewBox="0 0 220 20"
+                  >
+                    <g>
+                      <rect class="bar" x="0" y="0"></rect>
+                      <rect class="bar" x="12" y="0"></rect>
+                      <rect class="bar" x="24" y="0"></rect>
+                      <rect class="bar" x="36" y="0"></rect>
+                      <rect class="bar" x="48" y="0"></rect>
+                      <rect class="bar" x="60" y="0"></rect>
+                      <rect class="bar" x="72" y="0"></rect>
+                      <rect class="bar" x="84" y="0"></rect>
+                      <rect class="bar" x="96" y="0"></rect>
+                      <rect class="bar" x="108" y="0"></rect>
+                      <rect class="bar" x="120" y="0"></rect>
+                      <rect class="bar" x="132" y="0"></rect>
+                      <rect class="bar" x="144" y="0"></rect>
+                      <rect class="bar" x="156" y="0"></rect>
+                      <rect class="bar" x="168" y="0"></rect>
+                      <rect class="bar" x="180" y="0"></rect>
+                      <rect class="bar" x="192" y="0"></rect>
+                      <rect class="bar" x="204" y="0"></rect>
+                      <rect class="bar" x="216" y="0"></rect>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <!-- player & controls-->
+              <div class="timeline-player-container">
+                <div class="timeline-player-inner">
+                  <div class="jp-jplayer"></div>
+                  <div class="jp-audio">
+                    <div
+                      class="jp-controls"
+                      (click)="toggleStreamingPlayer($event)"
+                    >
+                      <a class="jp-play"
+                        ><i
+                          class="fa fa-play"
+                          *ngIf="
+                            !streaming.isPlaying() && !streaming.isLoading()
+                          "
+                        ></i
+                      ></a>
+                      <a
+                        class="jp-pause"
+                        *ngIf="streaming.isPlaying() && !streaming.isLoading()"
+                        ><i class="fa fa-pause"></i
+                      ></a>
+                      <i
+                        class="fas fa-spinner fa-pulse"
+                        *ngIf="streaming.isLoading()"
+                      ></i>
+                    </div>
+                    <div class="jp-progress">
+                      <div class="jp-seek-bar">
+                        <div class="jp-play-bar">
+                          <a [routerLink]="['/timeline']">
+                            <i class="fas fa-clock"></i> Playlist
+                          </a>
+                        </div>
+                      </div>
+                      <div class="jp-current-time">
+                        <!-- {{ currentTrack.duration }} -->
+                      </div>
+                    </div>
+                    <!-- <div class="jp-no-solution">
+                      Media Player Error<br />
+                      Update your browser or Flash plugin
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="timeline-right">
+            <div class="timeline-cards--fadeout"></div>
+            <div class="timeline-show">
+              <div class="timeline-show--current">
+                <figure class="timeline-show--current--figure">
+                  <img
+                    alt=""
+                    height="50"
+                    src="https://api.adorable.io/avatars/116/abott@adorable.io.png"
+                    width="50"
+                  />
+                </figure>
+                <p class="title"></p>
+                <p class="text">
+                  <!-- <strong> {{ showData.showName }}</strong> -->
+                </p>
+
+                <h5
+                  class="timeline-card--subtitle"
+                  id="artist-title-info"
+                  class="jp-artist"
+                ></h5>
+
+                <h5 class="timeline-show--current--title"></h5>
+                <strong> Mang Mang</strong>
+              </div>
+
+              <div class="timeline-show--right">
+                <div class="timeline-show--countdown">
+                  NEXT SHOW:
+                </div>
+                <div class="timeline-show--next">
+                  <h6 class="timeline-show--next--title">
+                    <strong> The Morning Blizard</strong>
+                  </h6>
+                  <span class="timeline-show--next--time">
+                    <strong>Mang Mang</strong>
+                  </span>
+                </div>
+              </div>
+              <br />
+            </div>
+          </div>
+          <div class="timeline-cards">
+            <div class="timeline-cards--inner">
+              <div class="timeline-ad-slot">
+                <app-timeline-history></app-timeline-history>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</div>

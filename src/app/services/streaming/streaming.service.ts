@@ -78,10 +78,10 @@ export class StreamingService {
 
       const envSource = environment.streaming.url;
 
-      if (envSource.split('.').pop() === "pls") {
+      if (envSource.split('.').pop() === 'pls') {
         // Parse PLS files
         sources = this.sourceFromPLS(envSource);
-      } else if (envSource.split('.').pop() === "m3u") {
+      } else if (envSource.split('.').pop() === 'm3u') {
         // Parse M3U files
         sources = this.sourceFromM3U(envSource);
       } else {

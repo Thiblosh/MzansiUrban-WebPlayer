@@ -1,7 +1,7 @@
 <div class="playlist">
   <div class="circle-loader playlist-loader gray" *ngIf="tracksLoading"></div>
   <ul *ngIf="tracks.length && !tracksLoading">
-    <li *ngFor="let track of tracks">
+    <li *ngFor="let track of tracks" id="menu">
       <div class="cover-art">
         <img src="{{ track.cover_art }}" *ngIf="track?.cover_art" />
       </div>
@@ -20,3 +20,16 @@
     You haven't listened long enough!
   </div>
 </div>
+
+<!-- <div class="fancy-cards">
+  <div class="fancy-card">
+    <div class="top">
+      <div class="caption">
+        <h3 class="title">Beautiful Summer</h3>
+        <a href="" class="button">Find Out </a>
+      </div>
+    </div>
+    <div class="middle"></div>
+    <div class="bottom"></div>
+  </div>
+</div> -->

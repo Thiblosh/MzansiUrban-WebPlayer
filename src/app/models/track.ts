@@ -31,13 +31,13 @@ export class Track {
   }
 
   hasEnded() {
-    let date = new Date();
+    const date = new Date();
     return date.getTime() >= this.ends_at;
   }
 
   timeUntilEnds() {
-    let date = new Date();
-    let ends_in = this.ends_at - date.getTime();
+    const date = new Date();
+    const ends_in = this.ends_at - date.getTime();
     return (ends_in < 0) ? 10000 : ends_in;
   }
 

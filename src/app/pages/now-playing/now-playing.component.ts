@@ -3,6 +3,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { StreamingService } from 'src/app/services/streaming/streaming.service';
 import { NowPlayingService } from 'src/app/services/streaming/now-playing.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ShowLineupService } from 'src/app/services/streaming/show-lineup.service';
+
+declare function radioTitle(): any;
+declare var $: any;
 
 @Component({
   selector: 'app-now-playing',
@@ -24,8 +28,13 @@ export class NowPlayingComponent implements OnInit {
 
   currentTrack: any;
   trackLoaded = false;
-
-  constructor(private npService: NowPlayingService, private streaming: StreamingService, private notifications: NotificationService) {
+  streamingPlayer;
+  showData: any;
+  // public streaming: StreamingService,
+  constructor(private npService: NowPlayingService,
+    private showDataService: ShowLineupService,
+    public streaming: StreamingService,
+    private notifications: NotificationService) {
   }
 
   getCurrentTrack(): void {
@@ -80,14 +89,36 @@ export class NowPlayingComponent implements OnInit {
     });
   }
 
+  toggleStreamingPlayer(): void {
+    if (this.streaming.player.playing()) {
+      this.streaming.pause();
+    } else {
+      this.streaming.play();
+    }
+  }
+
+  getShowData() {
+    // this.showData = this.showDataService.fetch();
+    this.showDataService.fetch().subscribe(data => {
+      this.showData = data;
+    });
+
+    console.log('--------------------------');
+    console.log(this.showData);
+    console.log('--------------------------');
+  }
+
   ngOnInit() {
     // Load current track onInit
     this.getCurrentTrack();
+    this.getShowData();
 
     // Watch when streaming is played to keep now playing up-to-date
     this.streaming.played.subscribe(() => {
       // Set current track
       this.getCurrentTrack();
+      this.getShowData();
+      radioTitle();
     });
   }
 

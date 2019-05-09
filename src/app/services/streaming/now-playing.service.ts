@@ -100,15 +100,15 @@ export class NowPlayingService {
                 const trackData = {};
 
                 track['property'].map((prop) => {
-                  if (prop['$']['name'] == 'cue_title') {
+                  if (prop['$']['name'] === 'cue_title') {
                     trackData['title'] = prop['_'];
-                  } else if (prop['$']['name'] == 'track_artist_name') {
+                  } else if (prop['$']['name'] === 'track_artist_name') {
                     trackData['artist'] = prop['_'];
-                  } else if (prop['$']['name'] == 'track_album_name') {
+                  } else if (prop['$']['name'] === 'track_album_name') {
                     trackData['album'] = prop['_'];
-                  } else if (prop['$']['name'] == 'cue_time_start') {
+                  } else if (prop['$']['name'] === 'cue_time_start') {
                     trackData['played_at'] = prop['_'];
-                  } else if (prop['$']['name'] == 'cue_time_duration') {
+                  } else if (prop['$']['name'] === 'cue_time_duration') {
                     trackData['duration'] = prop['_'];
                   }
                 });
