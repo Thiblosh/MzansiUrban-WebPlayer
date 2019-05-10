@@ -13847,4 +13847,117 @@ html.sb-animation {
   background: #f49800;
 }
 
-// Share button
+// live button
+
+.no_streaming {
+  // width: 8vw;
+  // height: 3vw;
+  color: #cc1919;
+  // border-radius: 3px;
+  font-weight: bold;
+  // color: #fff;
+  // font-size: 2.25vw;
+  // line-height: 3vw;
+  // display: inline-block;
+  // text-align: center;
+  // opacity: 0;
+  // text-shadow: none;
+}
+
+.live {
+  // width: 8vw;
+  // height: 3vw;
+  color: green;
+  // border-radius: 3px;
+  font-weight: bold;
+  // color: #fff;
+  // font-size: 2.25vw;
+  // line-height: 3vw;
+  // display: inline-block;
+  // text-align: center;
+  // opacity: 0;
+  // text-shadow: none;
+}
+
+/* Playing Animation */
+.playing {
+  position: absolute;
+  right: 5%;
+  top: 80%;
+  margin: -20px auto;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.playing>div {
+  background-color: rgb(36, 128, 0);
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  -webkit-animation: wavy 1s ease infinite forwards;
+  animation: wavy 1s ease infinite forwards;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.33);
+}
+
+.playing .rect2 {
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+
+.playing .rect3 {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.playing .rect4 {
+  -webkit-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+}
+
+.playing .rect5 {
+  -webkit-animation-delay: 1.0s;
+  animation-delay: 1.0s;
+}
+
+@-webkit-keyframes wavy {
+  0% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+
+@keyframes wavy {
+  0% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}

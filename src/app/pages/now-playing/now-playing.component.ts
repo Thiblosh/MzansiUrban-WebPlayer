@@ -94,7 +94,16 @@ export class NowPlayingComponent implements OnInit {
       this.streaming.play();
     }
   }
-
+  play(): void {
+    if (!this.streaming.player.playing()) {
+      this.streaming.play();
+    }
+  }
+  stop(): void {
+    if (this.streaming.player.playing()) {
+      this.streaming.pause();
+    }
+  }
   getShowData() {
     this.showDataService.fetch().subscribe(data => {
       this.showData = data;
