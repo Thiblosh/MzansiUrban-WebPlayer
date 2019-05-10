@@ -75,7 +75,6 @@ export class StreamingService {
 
     const promise = new Promise((resolve, reject) => {
       let sources: any = [];
-      console.log('start location');
       const envSource = environment.streaming.url;
 
       if (envSource.split('.').pop() === 'pls') {
@@ -88,13 +87,10 @@ export class StreamingService {
         // Standard source url
         sources.push(envSource);
       }
-
       return resolve(sources);
     });
-
     return promise;
   }
-
 
   initPlayer(sources) {
 

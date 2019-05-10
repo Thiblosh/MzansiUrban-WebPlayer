@@ -10,6 +10,7 @@ import { TimelineHistoryComponent } from './pages/timeline-history/timeline-hist
 import { CarouselHolderComponent } from './pages/carousel-holder/carousel-holder.component';
 import { NowPlayingComponent } from './pages/now-playing/now-playing.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShareComponent } from './pages/share/share.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     TimelineHistoryComponent,
     CarouselHolderComponent,
     NowPlayingComponent,
+    ShareComponent,
   ],
   imports: [
     BrowserModule,
