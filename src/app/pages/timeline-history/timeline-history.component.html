@@ -22,186 +22,20 @@
 </div>
  -->
 <div class="slider" id="menu">
-  <div class="slide-track">
-    <div class="slide">
+  <div class="slide-track" *ngIf="tracks.length && !tracksLoading">
+    <div class="slide" *ngFor="let track of tracks">
       <div class="fancy-cards">
         <div class="fancy-card">
-          <div class="top">
+          <div
+            class="top"
+            *ngIf="track?.cover_art"
+            [ngStyle]="{ 'background-image': 'url(' + track?.cover_art + ')' }"
+          >
             <div class="caption">
-              <h3 class="title">Song Title</h3>
-              <p>Artist Name</p>
+              <p class="jp-title">{{ track?.title }}</p>
+              <p class="jp-artist">{{ track?.artist }}</p>
             </div>
           </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="fancy-cards">
-        <div class="fancy-card">
-          <div class="top">
-            <div class="caption">
-              <h3 class="title">Beautiful Summer</h3>
-              <a href="" class="button">Find Out </a>
-            </div>
-          </div>
-          <div class="middle"></div>
-          <div class="bottom"></div>
         </div>
       </div>
     </div>

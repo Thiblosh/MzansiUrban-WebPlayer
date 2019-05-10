@@ -13,7 +13,14 @@
   </div>
 </div>
 <div class="circle-loader now-playing-loading gray" *ngIf="!trackLoaded"></div> -->
-
+<div id="siri-container"></div>
+<script>
+  var siriWave = new SiriWave({
+    container: document.getElementById("siri-container"),
+    width: 640,
+    height: 200
+  });
+</script>
 <!-- Song -->
 <div class="song">
   <body class="template-listen-live">
@@ -78,80 +85,14 @@
                 >
                   {{ currentTrack.title }}
                 </h4>
-                <!-- <p><strong>Album</strong> {{ currentTrack.album }}</p> -->
-                <div class="timeline-card--equalizer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="equalizer--svg"
-                    viewBox="0 0 220 20"
-                  >
-                    <g>
-                      <rect class="bar" x="0" y="0"></rect>
-                      <rect class="bar" x="12" y="0"></rect>
-                      <rect class="bar" x="24" y="0"></rect>
-                      <rect class="bar" x="36" y="0"></rect>
-                      <rect class="bar" x="48" y="0"></rect>
-                      <rect class="bar" x="60" y="0"></rect>
-                      <rect class="bar" x="72" y="0"></rect>
-                      <rect class="bar" x="84" y="0"></rect>
-                      <rect class="bar" x="96" y="0"></rect>
-                      <rect class="bar" x="108" y="0"></rect>
-                      <rect class="bar" x="120" y="0"></rect>
-                      <rect class="bar" x="132" y="0"></rect>
-                      <rect class="bar" x="144" y="0"></rect>
-                      <rect class="bar" x="156" y="0"></rect>
-                      <rect class="bar" x="168" y="0"></rect>
-                      <rect class="bar" x="180" y="0"></rect>
-                      <rect class="bar" x="192" y="0"></rect>
-                      <rect class="bar" x="204" y="0"></rect>
-                      <rect class="bar" x="216" y="0"></rect>
-                    </g>
-                  </svg>
-                </div>
+                <div class="timeline-card--equalizer"></div>
               </div>
               <!-- player & controls-->
               <div class="timeline-player-container">
                 <div class="timeline-player-inner">
-                  <div class="jp-jplayer"></div>
-                  <div class="jp-audio">
-                    <div
-                      class="jp-controls"
-                      (click)="toggleStreamingPlayer($event)"
-                    >
-                      <a class="jp-play"
-                        ><i
-                          class="fa fa-play"
-                          *ngIf="
-                            !streaming.isPlaying() && !streaming.isLoading()
-                          "
-                        ></i
-                      ></a>
-                      <a
-                        class="jp-pause"
-                        *ngIf="streaming.isPlaying() && !streaming.isLoading()"
-                        ><i class="fa fa-pause"></i
-                      ></a>
-                      <i
-                        class="fas fa-spinner fa-pulse"
-                        *ngIf="streaming.isLoading()"
-                      ></i>
-                    </div>
-                    <div class="jp-progress">
-                      <div class="jp-seek-bar">
-                        <div class="jp-play-bar">
-                          <a [routerLink]="['/timeline']">
-                            <i class="fas fa-clock"></i> Playlist
-                          </a>
-                        </div>
-                      </div>
-                      <div class="jp-current-time">
-                        <!-- {{ currentTrack.duration }} -->
-                      </div>
-                    </div>
-                    <!-- <div class="jp-no-solution">
-                      Media Player Error<br />
-                      Update your browser or Flash plugin
-                    </div> -->
+                  <div class="jp-controls">
+                    <a class="jp-play"><i class="fa fa-play"></i></a>
+                    <a class="jp-stop"><i class="fa fa-stop"></i></a>
                   </div>
                 </div>
               </div>
@@ -166,14 +107,16 @@
                   <img
                     alt=""
                     height="70"
-                    src="https://api.adorable.io/avatars/116/abott@adorable.io.png"
+                    src="https://ui-avatars.com/api/?name={{
+                      showData.currentShow.showName
+                    }}"
                     width="70"
                   />
                 </figure>
-                <p class="title">
-                  {{ showData.currentShow.showName }}
-                </p>
+                <p class="title"></p>
                 <p class="text">
+                  <strong>{{ showData.currentShow.showName }}</strong
+                  ><br />
                   {{ showData.currentShow.showPresenter }}
                 </p>
 

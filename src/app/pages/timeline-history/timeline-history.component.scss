@@ -88,15 +88,6 @@ h1 {
   box-sizing: border-box;
 }
 
-.fancy-card .card_img {
-  position: relative;
-  border-radius: 3px;
-  overflow: hidden;
-  width: 200px;
-  height: 200px;
-  transition: transform 300ms linear-out;
-}
-
 .fancy-card .top,
 .fancy-card .middle,
 .fancy-card .bottom {
@@ -147,8 +138,8 @@ h1 {
 
 .fancy-card .caption .title {
   color: #222;
-  margin: 0px 0px 15px 0px;
-  font-size: 1.0rem;
+  // margin: 0px 0px 15px 0px;
+  // font-size: 1.0rem;
 }
 
 .fancy-card .caption .button {
@@ -156,7 +147,24 @@ h1 {
   color: #333;
   text-decoration: none;
   border: solid 1px #555;
-  padding: 7px 13px;
+  // padding: 7px 13px;
   background-color: transparent;
   transition: all 300ms ease-in;
+}
+
+// ==========
+
+.jp-artist {
+  font-size: 10px;
+  font-weight: 700;
+  color: brown;
+  text-transform: uppercase;
+  margin-top: -1px;
+}
+
+.jp-title {
+  font-size: 8px;
+  font-weight: 400;
+  color: #01315a;
+  margin-top: 2px;
 }

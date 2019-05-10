@@ -76,7 +76,7 @@ export class StreamingService {
     const promise = new Promise((resolve, reject) => {
       let sources: any = [];
       console.log('start location');
-      const envSource = environment.streaming.alt_url;
+      const envSource = environment.streaming.url;
 
       if (envSource.split('.').pop() === 'pls') {
         // Parse PLS files

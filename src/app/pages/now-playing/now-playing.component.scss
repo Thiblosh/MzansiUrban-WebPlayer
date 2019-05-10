@@ -7101,8 +7101,8 @@ li.nav-social-icons a:hover {
 }
 
 .timeline-card .timeline-card--subtitle {
-  color: #818a91;
-  font-size: .9rem
+  color: #000000;
+  font-size: .5rem
 }
 
 .timeline-card .timeline-card--title {
@@ -13576,118 +13576,273 @@ html.sb-animation {
   border-top: 1px solid #e3e3e3
 }
 
+// ==================
 
-/// --------------
+/*********************************
+6. Song
+*********************************/
+
+.song {}
+
+.song_content {
+  padding-top: 84px;
+  padding-bottom: 50px;
+}
+
+.single_player_container {}
+
+.single_player {
+  width: 100%;
+}
 
 .jp-audio {
-  position: relative;
-  font-family: 'Source Sans Pro', sans-serif;
-  text-align: left;
   width: 100%;
-  height: 42px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  color: #7e3400;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 0;
-  line-height: 0;
 }
 
-.jp-audio .jp-controls {
-  left: 0;
+.time_controls {
+  width: calc(100% - 193px);
+  flex: 0 0 auto;
+}
+
+.player_controls_box {
+  /* width: 390px; */
+  padding-right: 30px;
+  flex: 0 0 auto;
+}
+
+.song_image {
+  width: 119px;
+  height: 119px;
+  border: solid 2px #ffffff;
+}
+
+.player_bars {
+  width: calc(100% - 390px);
+}
+
+.player_progress_box {
+  width: calc(100% - 193px);
+  padding-top: 70px;
+}
+
+.player_title {
+  display: inline-block;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding-left: 21px;
+  padding-right: 23px;
+  border-radius: 15px;
+  background: #f49800;
+  line-height: 30px;
+}
+
+.player_controls {
+  margin-top: 5px;
+}
+
+.player_controls>button:not(:last-of-type) {
+  margin-right: 7px;
+}
+
+.play_button {
+  width: 100%;
+}
+
+.player_button {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  background: transparent;
+  border: solid 3px #ffffff;
+  border-radius: 50%;
+  outline: none !important;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.player_button_main {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  /* background: transparent; */
+  border: solid 3px #000000;
+  border-radius: 50%;
+  outline: none !important;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.player_button::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.jp-play::after {
+  left: calc(50% + 3px);
+  width: 20px;
+  height: 23px;
+  content: url('../../../assets/img/play.png');
+}
+
+.jp-state-playing .jp-play {
+  background: #ff1a4b;
+  border-color: #ff1a4b;
+}
+
+.jp-state-playing .jp-play::after {
+  content: url('../../../assets/img/pause.png');
+  left: 50%;
+}
+
+.jp-stop::after {
+  top: calc(50% - 2px);
+  width: 14px;
+  height: 13px;
+  content: url('../../../assets/img/stop.png');
+}
+
+.song_info {
   position: absolute;
   top: 0;
-  width: 42px;
-  height: 100%;
-  background-color: #ff6a00;
+  left: 0;
 }
 
-.jp-audio .jp-controls a {
-  text-decoration: none;
-  font-size: 20px;
-  padding-left: 10px;
-  line-height: 42px;
-  text-align: center;
+.jp-artist {
+  font-size: 16px;
+  font-weight: 700;
+  color: brown;
+  text-transform: uppercase;
+  margin-top: -1px;
+}
+
+.jp-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: #01315a;
+  margin-top: 2px;
+}
+
+.jp-progress {
+  width: 100%;
   cursor: pointer;
+}
+
+.jp-seek-bar {
+  height: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: transparent;
+  margin-bottom: -5px;
+}
+
+.jp-seek-bar>div {
+  height: 2px;
+  background: #ffffff;
+}
+
+.jp-play-bar {
+  height: 100%;
+  background: #f49800;
+  overflow: visible !important;
+}
+
+.jp-play-bar>span {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f49800;
+}
+
+.jp-current-time {
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  font-size: 16px;
+  font-weight: 400;
   color: #ffffff;
 }
 
-.jp-audio .jp-controls a:hover {
-  color: #ffd850;
-}
-
-.jp-audio .jp-controls a:before {
-  display: inline-block;
-  font-family: flat-audio;
-  font-style: normal;
-  font-weight: 400;
-  text-decoration: none;
-  font-variant: normal;
-  text-transform: none;
-  // speak: none;
-  width: 42px;
-  line-height: 42px;
-  text-align: center;
-  opacity: 1;
-}
-
-.jp-audio .jp-progress {
+.jp-duration {
   position: absolute;
-  top: 0;
-  left: 42px;
+  bottom: -35px;
   right: 0;
-  height: 100%;
-  background-color: #a89e7a;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
 }
 
-.jp-audio .jp-progress .jp-seek-bar {
+.jp-volume-controls {
+  width: 193px;
+  padding-left: 42px;
+  flex: 0 0 auto;
+  padding-top: 70px;
+}
+
+.jp-volume-controls>div:first-child {}
+
+.mute_button {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+  left: 42px;
+  bottom: 19px;
+}
+
+.jp-mute {
+  position: relative;
+  background: transparent;
+  border: none;
+  outline: none !important;
   cursor: pointer;
 }
 
-.jp-audio .jp-progress .jp-seek-bar .jp-play-bar {
+.jp-mute::after {
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 100%;
-  background-color: #ffa96c;
+  content: url('../../../assets/img/mute_off.png');
 }
 
-.jp-audio .jp-current-time {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  padding: 0 12px;
-  font-size: 16px;
-  line-height: 42px;
-  text-align: right;
-  pointer-events: none;
+.jp-state-muted .jp-mute::after {
+  content: url('../../../assets/img/mute_on.png');
 }
 
-.jp-audio .jp-no-solution {
-  position: absolute;
-  top: 0;
-  left: 42px;
-  right: 0;
-  height: 42px;
-  padding: 8px 0;
-  line-height: 24px;
-  font-size: 16px;
-  text-align: center;
-  display: none;
-  color: #ffd850;
-  background-color: #b28282;
+.jp-volume-bar {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.jp-volume-bar>div {
+  width: 100%;
+  height: 100%;
+  height: 2px;
+  background: #ffffff;
+}
+
+.jp-volume-bar-value {
+  height: 100%;
+  background: #f49800;
 }
