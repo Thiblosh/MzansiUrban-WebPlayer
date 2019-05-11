@@ -1,27 +1,3 @@
-<!-- <div class="now-playing" *ngIf="trackLoaded">
-  <div class="cover-art">
-    <img src="{{ currentTrack.cover_art }}" *ngIf="currentTrack?.cover_art" />
-  </div>
-
-  <div class="text">
-    <div class="title" *ngIf="currentTrack?.title">
-      {{ currentTrack.title }}
-    </div>
-    <div class="artist" *ngIf="currentTrack?.artist">
-      by {{ currentTrack.artist }}
-    </div>
-  </div>
-</div>
-<div class="circle-loader now-playing-loading gray" *ngIf="!trackLoaded"></div> -->
-<div id="siri-container"></div>
-<script>
-  var siriWave = new SiriWave({
-    container: document.getElementById("siri-container"),
-    width: 640,
-    height: 200
-  });
-</script>
-<!-- Song -->
 <div class="song">
   <body class="template-listen-live">
     <div class="spinner-container">
@@ -87,40 +63,49 @@
                 </h4>
                 <div class="timeline-card--equalizer"></div>
                 <br />
-                <div
-                  *ngIf="this.streaming.player.playing()"
-                  id="live0"
-                  class="live"
-                >
-                  LIVE
-                </div>
-                <div
-                  *ngIf="
-                    !this.streaming.player.playing() && !streaming.isLoading()
-                  "
-                  id="live"
-                  class="no_streaming"
-                >
-                  No Streaming
-                </div>
-                <div *ngIf="streaming.isLoading()" id="live" class="connecting">
-                  <i
-                    class="fas fa-spinner fa-pulse"
-                    *ngIf="streaming.isLoading()"
-                  ></i>
-                </div>
+                <table>
+                  <tr>
+                    <div
+                      *ngIf="this.streaming.player.playing()"
+                      id="live0"
+                      class="live"
+                    >
+                      LIVE
+                    </div>
+                    <div
+                      *ngIf="
+                        !this.streaming.player.playing() &&
+                        !streaming.isLoading()
+                      "
+                      id="live"
+                      class="no_streaming"
+                    >
+                      No Streaming
+                    </div>
+                    <div
+                      *ngIf="streaming.isLoading()"
+                      id="live"
+                      class="connecting"
+                    >
+                      <i
+                        class="fas fa-spinner fa-pulse"
+                        *ngIf="streaming.isLoading()"
+                      ></i>
+                    </div>
 
-                <div
-                  *ngIf="this.streaming.player.playing()"
-                  id="playing1"
-                  class="playing"
-                >
-                  <div class="rect1"></div>
-                  <div class="rect2"></div>
-                  <div class="rect3"></div>
-                  <div class="rect4"></div>
-                  <div class="rect5"></div>
-                </div>
+                    <div
+                      *ngIf="this.streaming.player.playing()"
+                      id="playing1"
+                      class="playing"
+                    >
+                      <div class="rect1"></div>
+                      <div class="rect2"></div>
+                      <div class="rect3"></div>
+                      <div class="rect4"></div>
+                      <div class="rect5"></div>
+                    </div>
+                  </tr>
+                </table>
               </div>
               <!-- player & controls-->
               <div class="timeline-player-container">
@@ -176,14 +161,27 @@
                   NEXT SHOW:
                 </div>
                 <div class="timeline-show--next">
+                  <figure class="timeline-show--next--figure">
+                    <img
+                      alt=""
+                      height="70"
+                      src="https://ui-avatars.com/api/?name={{
+                        showData.nextShow.showName
+                      }}"
+                      width="70"
+                    />
+                  </figure>
+
                   <h6 class="timeline-show--next--title">
-                    <strong> {{ showData.nextShow.showName }}</strong>
+                    {{ showData.nextShow.showPresenter }}
                   </h6>
+                  <span class="icon-clock"></span>
                   <span class="timeline-show--next--time">
-                    <strong> {{ showData.nextShow.showPresenter }}</strong>
+                    Weekdays 16:00 - 19:00
                   </span>
                 </div>
               </div>
+
               <br />
             </div>
           </div>

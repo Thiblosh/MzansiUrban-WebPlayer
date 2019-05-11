@@ -4,7 +4,6 @@ import { StreamingService } from 'src/app/services/streaming/streaming.service';
 import { NowPlayingService } from 'src/app/services/streaming/now-playing.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ShowLineupService } from 'src/app/services/streaming/show-lineup.service';
-// import SiriWave from 'siriwave';
 
 @Component({
   selector: 'app-now-playing',
