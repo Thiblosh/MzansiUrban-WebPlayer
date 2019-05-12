@@ -75,7 +75,7 @@ export class StreamingService {
 
     const promise = new Promise((resolve, reject) => {
       let sources: any = [];
-      const envSource = environment.streaming.url;
+      const envSource = environment.streaming_audio.url;
 
       if (envSource.split('.').pop() === 'pls') {
         // Parse PLS files
@@ -96,8 +96,8 @@ export class StreamingService {
 
     this.player = new Howl({
       src: sources,
-      format: environment.streaming.format,
-      html5: environment.streaming.html5,
+      format: environment.streaming_audio.format,
+      html5: environment.streaming_audio.html5,
       onload: () => {
         this.status = 'loaded';
       },

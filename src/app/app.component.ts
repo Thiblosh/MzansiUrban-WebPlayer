@@ -4,6 +4,10 @@ import { StreamingService } from './services/streaming/streaming.service';
 import { NotificationService } from './services/notification/notification.service';
 
 import { trigger, animate, style, group, animateChild, query, stagger, transition } from '@angular/animations';
+import { Icecast } from './models/icecast';
+import { Source } from './models/source';
+import { Observable } from 'rxjs';
+import { IcecastService } from './services/icecast/icecast.service';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +38,9 @@ export class AppComponent implements OnInit {
   darkModeActive = false;
   // streamingPlayer;
 
-  constructor(public ui: UiService, public streaming: StreamingService, public notifications: NotificationService) {
+  constructor(public ui: UiService,
+    public streaming: StreamingService,
+    public notifications: NotificationService) {
   }
 
   ngOnInit() {
@@ -42,6 +48,10 @@ export class AppComponent implements OnInit {
       this.darkModeActive = value;
     });
   }
+
+  // onSelect(source: Source): void {
+  //   this.selectedSource = source;
+  // }
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
@@ -54,14 +64,6 @@ export class AppComponent implements OnInit {
   getState(outlet): string {
     return outlet.activatedRouteData.state;
   }
-
-  // toggleStreamingPlayer(): void {
-  //   if (this.streaming.player.playing()) {
-  //     this.streaming.pause();
-  //   } else {
-  //     this.streaming.play();
-  //   }
-  // }
 
   removeNotification(id: string): void {
     this.notifications.remove(id);

@@ -63,60 +63,64 @@
                 </h4>
                 <div class="timeline-card--equalizer"></div>
                 <br />
-                <table>
-                  <tr>
-                    <div
-                      *ngIf="this.streaming.player.playing()"
-                      id="live0"
-                      class="live"
-                    >
-                      LIVE
-                    </div>
-                    <div
-                      *ngIf="
-                        !this.streaming.player.playing() &&
-                        !streaming.isLoading()
-                      "
-                      id="live"
-                      class="no_streaming"
-                    >
-                      No Streaming
-                    </div>
-                    <div
-                      *ngIf="streaming.isLoading()"
-                      id="live"
-                      class="connecting"
-                    >
-                      <i
-                        class="fas fa-spinner fa-pulse"
-                        *ngIf="streaming.isLoading()"
-                      ></i>
-                    </div>
-
-                    <div
-                      *ngIf="this.streaming.player.playing()"
-                      id="playing1"
-                      class="playing"
-                    >
-                      <div class="rect1"></div>
-                      <div class="rect2"></div>
-                      <div class="rect3"></div>
-                      <div class="rect4"></div>
-                      <div class="rect5"></div>
-                    </div>
-                  </tr>
-                </table>
               </div>
               <!-- player & controls-->
               <div class="timeline-player-container">
                 <div class="timeline-player-inner">
                   <div class="jp-controls">
-                    <a class="jp-play"
-                      ><i class="fa fa-play" (click)="play()"></i
-                    ></a>
-                    <a class="jp-stop"
-                      ><i class="fa fa-stop" (click)="stop()"></i
-                    ></a>
+                    <table>
+                      <tr>
+                        <td>
+                          <a class="jp-play"
+                            ><i class="fa fa-play" (click)="play()"></i
+                          ></a>
+                          <a class="jp-stop"
+                            ><i class="fa fa-stop" (click)="stop()"></i
+                          ></a>
+                        </td>
+                        <td>
+                          <div
+                            *ngIf="this.streaming.player.playing()"
+                            id="live0"
+                            class="live"
+                          >
+                            LIVE
+                          </div>
+                          <div
+                            *ngIf="
+                              !this.streaming.player.playing() &&
+                              !streaming.isLoading()
+                            "
+                            id="live"
+                            class="no_streaming"
+                          >
+                            No Streaming
+                          </div>
+                          <div
+                            *ngIf="streaming.isLoading()"
+                            id="live"
+                            class="connecting"
+                          >
+                            <i
+                              class="fas fa-spinner fa-pulse"
+                              *ngIf="streaming.isLoading()"
+                            ></i>
+                          </div>
+                        </td>
+
+                        <div
+                          *ngIf="this.streaming.player.playing()"
+                          id="playing1"
+                          class="playing"
+                        >
+                          <div class="rect1"></div>
+                          <div class="rect2"></div>
+                          <div class="rect3"></div>
+                          <div class="rect4"></div>
+                          <div class="rect5"></div>
+                        </div>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>

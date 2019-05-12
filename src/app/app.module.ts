@@ -7,17 +7,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './pages/player/player.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TimelineHistoryComponent } from './pages/timeline-history/timeline-history.component';
-import { CarouselHolderComponent } from './pages/carousel-holder/carousel-holder.component';
 import { NowPlayingComponent } from './pages/now-playing/now-playing.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ShareComponent } from './pages/share/share.component';
+import { LastFMService } from './services/lastfm/lastfm.service';
+import { IcecastService } from './services/icecast/icecast.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     TimelineHistoryComponent,
-    CarouselHolderComponent,
     NowPlayingComponent,
     ShareComponent,
   ],
@@ -26,9 +26,13 @@ import { ShareComponent } from './pages/share/share.component';
     AppRoutingModule,
     CarouselModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    LastFMService,
+    IcecastService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Track } from 'src/app/models/track';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import * as xml2js from 'xml2js';
 import { Observable, Subject, pipe } from 'rxjs';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -78,7 +79,7 @@ export class NowPlayingService {
 
     console.log('Testing the fetch method');
     return this.http.get(dataUrl, {
-      responseType: 'text'
+      responseType: 'text',
     }).pipe(
       map((data: any) => {
         const results: any = [];
@@ -133,6 +134,14 @@ export class NowPlayingService {
           // Push new track to tracksList
           tracksList.push(new Track(trackData));
 
+        } else if (environment.now_playing.provider === 3) {
+          // Mzansi Track Information
+
+          // Parse JSON
+          const trackData = JSON.parse(data);
+
+          // Push new track to tracksList
+          tracksList.push(new Track(trackData));
         }
 
         // Return formatted tracksList
@@ -141,86 +150,4 @@ export class NowPlayingService {
       )
     );
   }
-
-  radioTitle() {
-    console.log('Testing the fetch method');
-    const tracksList = [];
-    // let current = Track;
-    // let currentArtist = '';
-    // let currentSong = '';
-    const url = 'http://radioinbox.co.za:8000/json.xsl?callback=?';
-
-    this.http.get(url).subscribe(res => {
-      const nowSongInfo = this.mainPlayerCurrentlyPlaying(res);
-      const artist = nowSongInfo[0].trim();
-      const song = nowSongInfo[1].trim();
-
-      const trackData = JSON.parse(nowSongInfo);
-      this.lastFMSongInfoAPI(artist, song);
-
-      // if ((artist !== currentArtist) && (song !== currentSong)) {
-      //   currentArtist = artist;
-      //   currentSong = song;
-      //   this.lastFMSongInfoAPI(currentArtist, currentSong);
-      // }
-
-      // Push new track to tracksList
-      tracksList.push(new Track(trackData));
-
-      // Return formatted tracksList
-      return tracksList;
-    });
-
-  }
-
-  lastFMSongInfoAPI(artist, track) {
-    const lastfmAPIKey = '15c555d462be60c90948b7d4e74882de';
-    // tslint:disable-next-line: max-line-length
-    let url = 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=' + lastfmAPIKey + '&artist=' + artist + '&track=' + track + '&format=json';
-    url = encodeURI(url);
-
-
-  }
-
-  mainPlayerCurrentlyPlaying(json) {
-    let currentMount = '/mzansiurban1';
-
-    if (currentMount !== '') {
-      const title = json['mounts'][currentMount]['title'];
-
-      if (title.indexOf('Unknown') > -1) {
-        return ['Song Information Not Available.', 'Mzansi Urban Radio'];
-      } else {
-        return this.formatCurrentTitle(title);
-      }
-    } else {
-      return '---';
-    }
-  }
-
-  formatCurrentTitle(title) {
-    if (title !== '') {
-      if (title.indexOf('Unknown') > -1) {
-        return ['Song Information Not Available.', 'Mzansi Urban Radio'];
-      } else if (title.indexOf('Jingle') > -1) {
-        return ['Mzansi Urban Radio', 'The Southern Urban Experience'];
-      } else {
-        const details = title.split('-');
-        return details;
-      }
-    } else {
-      return ['Song Information Not Available.', 'Mzansi Urban Radio'];
-    }
-  }
-
-  // $(document).ready(function () {
-  //   setTimeout(function () {
-  //     radioTitle();
-  //   }, 2000);
-  //   setInterval(function () {
-  //     radioTitle();
-  //   }, 15000);
-  // });
-
-
 }
