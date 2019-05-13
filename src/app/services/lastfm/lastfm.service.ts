@@ -31,17 +31,17 @@ export class LastFMService {
 
   getTackInfo(artist: string, track: string): Promise<LastFM> {
     const params: URLSearchParams = new URLSearchParams();
-    params.set('method', 'track.getinfo');
+    params.set('method', 'track.getInfo');
     params.set('api_key', environment.lastfm.LASTFM_APIKEY);
     params.set('artist', artist);
     params.set('track', track);
     params.set('format', 'json');
     this.options = ({ headers: this.headers, search: params });
 
-    return this.http.get(environment.lastfm.LASTFM_APIURL, this.options)
+    // tslint:disable-next-line: max-line-length
+    return this.http.get(environment.lastfm.LASTFM_APIURL + 'method=track.getInfo&api_key=' + environment.lastfm.LASTFM_APIKEY + '& artist=' + artist + '&track=' + track + '&format=json')
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
   }
-
 }

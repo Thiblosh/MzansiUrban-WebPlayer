@@ -27,7 +27,7 @@ import { IcecastService } from 'src/app/services/icecast/icecast.service';
     ])
   ]
 })
-export class NowPlayingComponent implements OnChanges, OnInit {
+export class NowPlayingComponent implements OnInit {
   currentTrack: any;
   trackLoaded = false;
   streamingPlayer;
@@ -46,7 +46,8 @@ export class NowPlayingComponent implements OnChanges, OnInit {
   // tslint:disable-next-line: variable-name
   private album_art: string;
 
-  constructor(private npService: NowPlayingService,
+  constructor(
+    private npService: NowPlayingService,
     private showDataService: ShowLineupService,
     public streaming: StreamingService,
     private icecastService: IcecastService,
@@ -59,6 +60,8 @@ export class NowPlayingComponent implements OnChanges, OnInit {
       icecast => {
         this.icecast = icecast;
         this.sources = [].concat(this.icecast.source);
+        console.log('sources: ' + this.icecast);
+
         if (this.selectedSource) {
           // update selected source data
           for (const sourceData of this.sources) {
@@ -75,73 +78,15 @@ export class NowPlayingComponent implements OnChanges, OnInit {
     );
   }
 
-  getAlbumArt(artist: string, track: string): void {
-    this.lastFMService.getTackInfo(artist, track).then(
-      lastfm => {
-        this.lastFMresponce = lastfm;
-        this.album_art = environment.now_playing.generic_cover;
-
-        if (this.lastFMresponce.error) {
-          console.log('Error: ', this.lastFMresponce.message);
-        } else {
-          console.log(this.lastFMresponce.track["album"]);
-          if (this.lastFMresponce.track["album"]) {
-            if (this.lastFMresponce.track["album"].image.length > 0) {
-              // get last (largest) image
-              const imgIndex = this.lastFMresponce.track["album"].image.length - 1;
-              const art_url = this.lastFMresponce.track.album.image[imgIndex]['#text'];
-              if (art_url) {
-                this.album_art = art_url;
-              } else {
-                console.log('lastfm returned blank album art!');
-              }
-            }
-          }
-        }
-      }
-    );
-  }
-
-  ngOnChanges(): void {
-    console.log('source: ' + this.source);
-
-    if (this.source) {
-      // make sure this.currentSource is defined
-      if (!this.currentSource) {
-        this.currentSource = this.source;
-        // update album art
-        this.getAlbumArt(this.source.artist, this.source.title);
-      }
-      if (this.currentMount !== this.source.server_name) {
-        // switching to new mount
-        this.currentMount = this.source.server_name;
-
-        // update audio player
-        this.audioPlayer.src = this.source.listenurl;
-        this.audioPlayer.pause();
-        this.audioPlayer.load();
-        if (this.isPlaying) {
-          this.audioPlayer.play();
-        }
-      }
-      if (this.source.artist !== this.currentSource.artist || this.source.title !== this.currentSource.title) {
-        // update album art
-        this.getAlbumArt(this.source.artist, this.source.title);
-        this.currentSource = this.source;
-      }
-    }
-  }
-
   getCurrentTrack(): void {
     this.trackLoaded = false;
-
-    this.ngOnChanges();
 
     // Retrieve current track
     this.npService.fetch(1).subscribe((response) => {
 
       setTimeout(() => {
         // tslint:disable-next-line: no-shadowed-constiable
+        // tslint:disable-next-line: no-shadowed-variable
         this.npService.formatItunes(response[0]).subscribe((response) => {
 
           // Push current track to recentlyPlayed if is different that latest
@@ -167,15 +112,9 @@ export class NowPlayingComponent implements OnChanges, OnInit {
     }, (error) => {
       setTimeout(() => {
         // Add error notification
-        this.notifications.create('error', 'Unable to load now playing information.');
-
-        // Set track with dummy track
+        // this.notifications.create('error', 'Unable to load now playing information.');
         this.currentTrack = this.npService.dummyTrack();
-
-        // Set trackLoaded to true
         this.trackLoaded = true;
-
-        // Set 10 second timeout and check for track again
         setTimeout(() => {
           this.getCurrentTrack();
         }, 30000);
@@ -210,6 +149,7 @@ export class NowPlayingComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
+    // Load
     this.getIcecast();
 
     // Load current track onInit

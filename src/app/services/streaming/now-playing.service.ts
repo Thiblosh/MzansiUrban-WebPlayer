@@ -6,6 +6,7 @@ import * as xml2js from 'xml2js';
 import { Observable, Subject, pipe } from 'rxjs';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import * as $ from 'jquery';
+import { LastFMService } from '../lastfm/lastfm.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class NowPlayingService {
 
   public npUpdate: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private lastFmService: LastFMService) { }
 
   dummyTrack(): Track {
     const dateObj = new Date();
@@ -53,7 +54,6 @@ export class NowPlayingService {
 
   formatItunes(track: Track) {
     let searchUrl = 'https://itunes.apple.com/search?term=';
-    console.log('testing serach ');
     searchUrl += encodeURI(track.title + ' by ' + track.artist);
 
     searchUrl += '&limit=1&entity=song';
@@ -75,70 +75,33 @@ export class NowPlayingService {
   }
 
   fetch(limit): Observable<Track[]> {
-    const dataUrl = environment.now_playing.data_url.replace('{{limit}}', limit);
-
+    // const dataUrl = environment.now_playing.data_url.replace('{{limit}}', limit);
+    const dataUrl = environment.now_playing.alt_url;
     console.log('Testing the fetch method');
+
     return this.http.get(dataUrl, {
       responseType: 'text',
     }).pipe(
       map((data: any) => {
-        const results: any = [];
-
         const tracksList = [];
 
-        if (environment.now_playing.provider === 1) {
-          // Triton Digital
+        if (environment.now_playing.provider === 3 && data !== '') {
+          const str = data.substr(13).slice(0, -2); // last 2 characters & the first parseMusic(
+          const obj = str.replace(/\\n/g, '').replace(/\s/g, ''); // remove newline & whitespce
+          const stringObject = JSON.parse(obj);
 
-          // Parse XML to JSON
-          xml2js.parseString(data, (error, parsed) => {
+          const nowSongInfo = this.mainPlayerCurrentlyPlaying(stringObject);
+          const artist = nowSongInfo[0].trim();
+          const song = nowSongInfo[1].trim();
 
-            // If list of tracks is found, begin loop
-            if (parsed['nowplaying-info-list'] && parsed['nowplaying-info-list']['nowplaying-info']) {
+          // Create track data
+          const trackData = {};
 
-              // Loop through track properties and populate trackData
-              for (const track of parsed['nowplaying-info-list']['nowplaying-info']) {
-
-                // Create track data for later use
-                const trackData = {};
-
-                track['property'].map((prop) => {
-                  if (prop['$']['name'] === 'cue_title') {
-                    trackData['title'] = prop['_'];
-                  } else if (prop['$']['name'] === 'track_artist_name') {
-                    trackData['artist'] = prop['_'];
-                  } else if (prop['$']['name'] === 'track_album_name') {
-                    trackData['album'] = prop['_'];
-                  } else if (prop['$']['name'] === 'cue_time_start') {
-                    trackData['played_at'] = prop['_'];
-                  } else if (prop['$']['name'] === 'cue_time_duration') {
-                    trackData['duration'] = prop['_'];
-                  }
-                });
-
-                // If track doesn't have played_at grab it from timestamp attribute
-                if (trackData['played_at'] == undefined) {
-                  trackData['played_at'] = track['$']['timestamp'] * 1000;
-                }
-
-                // Push new Track to tracksList
-                tracksList.push(new Track(trackData));
-              }
-            }
-          });
-        } else if (environment.now_playing.provider === 2) {
-          // RadioDJ
-
-          // Parse JSON
-          const trackData = JSON.parse(data);
-
-          // Push new track to tracksList
-          tracksList.push(new Track(trackData));
-
-        } else if (environment.now_playing.provider === 3) {
-          // Mzansi Track Information
-
-          // Parse JSON
-          const trackData = JSON.parse(data);
+          trackData['title'] = song;
+          trackData['artist'] = artist;
+          trackData['album'] = '';
+          trackData['played_at'] = '';
+          trackData['duration'] = '';
 
           // Push new track to tracksList
           tracksList.push(new Track(trackData));
@@ -149,5 +112,27 @@ export class NowPlayingService {
       }
       )
     );
+  }
+
+  mainPlayerCurrentlyPlaying(json) {
+    const currentMount = '/mzansiurban1';
+    const title = json['mounts'][currentMount]['title'];
+
+    if (title.indexOf('Unknown') > -1) {
+      return ['Song Information Not Available.', 'Mzansi Urban Radio'];
+    } else {
+      return this.formatCurrentTitle(title);
+    }
+  }
+
+  formatCurrentTitle(title) {
+    if (title.indexOf('Unknown') > -1) {
+      return ['Song Information Not Available.', 'Mzansi Urban Radio'];
+    } else if (title.indexOf('Jingle') > -1) {
+      return ['Mzansi Urban Radio', 'The Southern Urban Experience'];
+    } else {
+      const details = title.split('-');
+      return details;
+    }
   }
 }

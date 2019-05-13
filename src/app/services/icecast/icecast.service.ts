@@ -15,11 +15,15 @@ export class IcecastService {
   }
 
   private extractData(res: any): Icecast {
+    console.log('sources: ');
+
     const body = res.json();
     return body.icestats || {};
   }
 
   getIcecast(): Promise<Icecast> {
+    console.log('sources: ');
+
     return this.http.get(this.icecastURL, { responseType: 'text' })
       .toPromise()
       .then(this.extractData)

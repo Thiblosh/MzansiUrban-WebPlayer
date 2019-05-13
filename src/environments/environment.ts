@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   now_playing: {
-    provider: 1,
+    provider: 3,
     data_url: 'http://np.tritondigital.com/public/nowplaying?mountName=WSPKFMAAC&numberToFetch={{limit}}&eventType=track',
     alt_url: 'http://radioinbox.co.za:8000/json.xsl',
     generic_cover: './assets/img/mur-noartist-logo.png',
@@ -24,7 +24,7 @@ export const environment = {
     url: 'http://smatmassbsc.westeurope.cloudapp.azure.com:8080/api/current-show-data'
   },
   lastfm: {
-    LASTFM_APIURL: 'http://ws.audioscrobbler.com/2.0/',
+    LASTFM_APIURL: 'http://ws.audioscrobbler.com/2.0/?',
     LASTFM_APIKEY: '15c555d462be60c90948b7d4e74882de'
   }
 };
