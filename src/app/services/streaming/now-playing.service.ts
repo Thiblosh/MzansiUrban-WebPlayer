@@ -30,7 +30,7 @@ export class NowPlayingService {
   }
 
   hasTrackHasBeenRecentlyPlayed(track: Track): boolean {
-    return this.recentlyPlayed.find(obj => obj['played_at'] === track['played_at']) !== undefined;
+    return this.recentlyPlayed.find(obj => obj['title'] === track['title']) !== undefined;
   }
 
   getRecentlyPlayed(): Track[] {
@@ -100,8 +100,10 @@ export class NowPlayingService {
           trackData['title'] = song;
           trackData['artist'] = artist;
           trackData['album'] = '';
-          trackData['played_at'] = '';
           trackData['duration'] = '';
+          if (trackData['played_at'] === undefined) {
+            trackData['played_at'] = new Date().getTime();
+          }
 
           // Push new track to tracksList
           tracksList.push(new Track(trackData));
