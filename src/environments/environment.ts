@@ -7,7 +7,7 @@ export const environment = {
   now_playing: {
     provider: 3,
     data_url: 'http://np.tritondigital.com/public/nowplaying?mountName=WSPKFMAAC&numberToFetch={{limit}}&eventType=track',
-    alt_url: 'http://radioinbox.co.za:8000/json.xsl',
+    alt_url: 'http://stream.urbanza.co.za/status-json.xsl',
     generic_cover: './assets/img/mur-noartist-logo.png',
     format_tracks: false,
     default_title: 'Unknown Title',

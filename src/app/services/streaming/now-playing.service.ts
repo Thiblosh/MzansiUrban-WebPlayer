@@ -86,8 +86,8 @@ export class NowPlayingService {
         const tracksList = [];
 
         if (environment.now_playing.provider === 3 && data !== '') {
-          const str = data.substr(13).slice(0, -2); // last 2 characters & the first parseMusic(
-          const obj = str.replace(/\\n/g, '').replace(/\s/g, ''); // remove newline & whitespce
+          //const str = data.substr(13).slice(0, -2); // last 2 characters & the first parseMusic(
+          const obj = data.replace(/\\n/g, '').replace(/\s/g, ''); // remove newline & whitespce
           const stringObject = JSON.parse(obj);
 
           const nowSongInfo = this.mainPlayerCurrentlyPlaying(stringObject);
@@ -117,8 +117,8 @@ export class NowPlayingService {
   }
 
   mainPlayerCurrentlyPlaying(json) {
-    const currentMount = '/mzansiurban1';
-    const title = json['mounts'][currentMount]['title'];
+    let resources = json['icestats']['source'];
+    let title = resources[4]['title'];
 
     if (title.indexOf('Unknown') > -1) {
       return ['Song Information Not Available.', 'Mzansi Urban Radio'];
