@@ -14,18 +14,7 @@ import { IcecastService } from 'src/app/services/icecast/icecast.service';
 @Component({
   selector: 'app-now-playing',
   templateUrl: './now-playing.component.html',
-  styleUrls: ['./now-playing.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('300ms ease-in', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ transform: 'translateX(100%)' }))
-      ])
-    ])
-  ]
+  styleUrls: ['./now-playing.component.scss']
 })
 export class NowPlayingComponent implements OnInit {
   currentTrack: any;

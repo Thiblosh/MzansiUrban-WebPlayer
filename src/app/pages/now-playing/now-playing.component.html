@@ -1,203 +1,98 @@
-<div class="song">
-  <body class="template-listen-live">
-    <div class="spinner-container">
-      <div class="lds-ripple">
-        <div></div>
-        <div></div>
+<article class="timeline-card type-song size-lg">
+  <figure class="timeline-card--figure">
+    <div class="timeline-card--figure--img">
+      <img
+        id="album-cover-img"
+        src="{{ currentTrack.cover_art }}"
+        *ngIf="currentTrack?.cover_art"
+        alt=""
+      />
+    </div>
+    <ul class="timeline-card--actions">
+      <li>
+        <button
+          href="#"
+          class="timeline-card--action-like is-active"
+          (click)="getShowData()"
+        >
+          <span class="icon-like"></span>
+        </button>
+      </li>
+      <li>
+        <button href="#" class="timeline-card--action-dislike is-active">
+          <span class="icon-dislike"></span>
+        </button>
+      </li>
+    </ul>
+  </figure>
+  <div class="timeline-card--text">
+    <h5
+      class="timeline-card--subtitle"
+      id="artist-title-info"
+      class="jp-artist"
+      *ngIf="currentTrack?.artist"
+    >
+      {{ currentTrack.artist }}
+    </h5>
+    <h4
+      class="timeline-card--title"
+      id="song-title-info"
+      class="jp-title"
+      *ngIf="currentTrack?.title"
+    >
+      {{ currentTrack.title }}
+    </h4>
+    <div class="timeline-card--equalizer"></div>
+    <br />
+  </div>
+  <div class="timeline-player-container">
+    <div class="timeline-player-inner">
+      <div class="jp-controls">
+        <table>
+          <tr>
+            <td>
+              <a class="jp-play"><i class="fa fa-play" (click)="play()"></i></a>
+              <a class="jp-stop"><i class="fa fa-stop" (click)="stop()"></i></a>
+            </td>
+            <td>
+              <div
+                *ngIf="this.streaming.player.playing()"
+                id="live0"
+                class="live"
+              >
+                LIVE
+              </div>
+              <div
+                *ngIf="
+                  !this.streaming.player.playing() && !streaming.isLoading()
+                "
+                id="live"
+                class="no_streaming"
+              >
+                No Streaming
+              </div>
+              <div *ngIf="streaming.isLoading()" id="live" class="connecting">
+                <i
+                  class="fas fa-spinner fa-pulse"
+                  *ngIf="streaming.isLoading()"
+                ></i>
+              </div>
+            </td>
+
+            <div
+              *ngIf="this.streaming.player.playing()"
+              id="playing1"
+              class="playing"
+            >
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+            </div>
+          </tr>
+        </table>
       </div>
     </div>
-    <main class="main" role="main">
-      <section>
-        <div class="timeline">
-          <div class="timeline-current">
-            <article class="timeline-card type-song size-lg">
-              <div class="timeline-card--corner"></div>
-              <div class="timeline-card--icon">
-                <span class="icon-"></span>
-              </div>
-              <figure class="timeline-card--figure">
-                <div class="timeline-card--figure--img">
-                  <img
-                    id="album-cover-img"
-                    src="{{ currentTrack.cover_art }}"
-                    *ngIf="currentTrack?.cover_art"
-                    alt=""
-                  />
-                </div>
-                <ul class="timeline-card--actions">
-                  <li>
-                    <button
-                      href="#"
-                      class="timeline-card--action-like is-active"
-                      (click)="getShowData()"
-                    >
-                      <span class="icon-like"></span>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      href="#"
-                      class="timeline-card--action-dislike is-active"
-                    >
-                      <span class="icon-dislike"></span>
-                    </button>
-                  </li>
-                </ul>
-              </figure>
-              <div class="timeline-card--text">
-                <h5
-                  class="timeline-card--subtitle"
-                  id="artist-title-info"
-                  class="jp-artist"
-                  *ngIf="currentTrack?.artist"
-                >
-                  {{ currentTrack.artist }}
-                </h5>
-                <h4
-                  class="timeline-card--title"
-                  id="song-title-info"
-                  class="jp-title"
-                  *ngIf="currentTrack?.title"
-                >
-                  {{ currentTrack.title }}
-                </h4>
-                <div class="timeline-card--equalizer"></div>
-                <br />
-              </div>
-              <!-- player & controls-->
-              <div class="timeline-player-container">
-                <div class="timeline-player-inner">
-                  <div class="jp-controls">
-                    <table>
-                      <tr>
-                        <td>
-                          <a class="jp-play"
-                            ><i class="fa fa-play" (click)="play()"></i
-                          ></a>
-                          <a class="jp-stop"
-                            ><i class="fa fa-stop" (click)="stop()"></i
-                          ></a>
-                        </td>
-                        <td>
-                          <div
-                            *ngIf="this.streaming.player.playing()"
-                            id="live0"
-                            class="live"
-                          >
-                            LIVE
-                          </div>
-                          <div
-                            *ngIf="
-                              !this.streaming.player.playing() &&
-                              !streaming.isLoading()
-                            "
-                            id="live"
-                            class="no_streaming"
-                          >
-                            No Streaming
-                          </div>
-                          <div
-                            *ngIf="streaming.isLoading()"
-                            id="live"
-                            class="connecting"
-                          >
-                            <i
-                              class="fas fa-spinner fa-pulse"
-                              *ngIf="streaming.isLoading()"
-                            ></i>
-                          </div>
-                        </td>
-
-                        <div
-                          *ngIf="this.streaming.player.playing()"
-                          id="playing1"
-                          class="playing"
-                        >
-                          <div class="rect1"></div>
-                          <div class="rect2"></div>
-                          <div class="rect3"></div>
-                          <div class="rect4"></div>
-                          <div class="rect5"></div>
-                        </div>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <!-- <app-share></app-share> -->
-          </div>
-
-          <div class="timeline-right">
-            <div class="timeline-cards--fadeout"></div>
-            <div class="timeline-show">
-              <div class="timeline-show--current">
-                <figure class="timeline-show--current--figure">
-                  <img
-                    alt=""
-                    height="70"
-                    src="https://ui-avatars.com/api/?name={{
-                      showData.currentShow.showName
-                    }}"
-                    width="70"
-                  />
-                </figure>
-                <p class="title"></p>
-                <p class="text">
-                  <strong>{{ showData.currentShow.showName }}</strong
-                  ><br />
-                  {{ showData.currentShow.showPresenter }}
-                </p>
-
-                <h5
-                  class="timeline-card--subtitle"
-                  id="artist-title-info"
-                  class="jp-artist"
-                ></h5>
-
-                <h6 class="timeline-show--current--title">
-                  {{ showData.currentShow.showDescription }}
-                </h6>
-              </div>
-
-              <div class="timeline-show--right">
-                <div class="timeline-show--countdown">
-                  NEXT SHOW:
-                </div>
-                <div class="timeline-show--next">
-                  <figure class="timeline-show--next--figure">
-                    <img
-                      alt=""
-                      height="70"
-                      src="https://ui-avatars.com/api/?name={{
-                        showData.nextShow.showName
-                      }}"
-                      width="70"
-                    />
-                  </figure>
-
-                  <h6 class="timeline-show--next--title">
-                    {{ showData.nextShow.showPresenter }}
-                  </h6>
-                  <span class="icon-clock"></span>
-                  <span class="timeline-show--next--time">
-                    Weekdays 16:00 - 19:00
-                  </span>
-                </div>
-              </div>
-
-              <br />
-            </div>
-          </div>
-          <div class="timeline-cards">
-            <div class="timeline-cards--inner">
-              <div class="timeline-ad-slot">
-                <app-timeline-history></app-timeline-history>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </body>
-</div>
+  </div>
+</article>
